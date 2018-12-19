@@ -10,7 +10,7 @@ import OG from './components/og';
 const lightBrown = '#58382a';
 const darkBrown = '#191919';
 const white = '#fff;';
-const yellow = '#ebaf3c';
+const yellow = '#f4d03f';
 
 const page = css`
   padding: 100px 50px 0;
