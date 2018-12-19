@@ -38,7 +38,7 @@ class OG extends Component {
 
     return (
       <div>
-        <h2>Calculate OG</h2>
+        <h2>Original Gravity</h2>
         <div>
           <label htmlFor="malt_potential">Malt Potential</label><br />
           <input
@@ -47,7 +47,7 @@ class OG extends Component {
             value={this.state.potential}
             onChange={handlePotentialChange}
           ></input><br />
-          <label htmlFor="malt_weight">Malt Weight (lbs.)</label><br />
+          <label htmlFor="malt_weight">Malt Weight (lbs)</label><br />
           <input
             name="malt_weight"
             type="number"
@@ -61,7 +61,7 @@ class OG extends Component {
             value={this.state.efficiency}
             onChange={handleEfficiencyChange}
           ></input><br />
-          <label htmlFor="volume">Post-boil Volume</label><br />
+          <label htmlFor="volume">Post-boil Volume (gal)</label><br />
           <input
             name="volume"
             type="number"
