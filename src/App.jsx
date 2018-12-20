@@ -4,9 +4,10 @@ import { Component } from 'react';
 import { jsx, css } from '@emotion/core'
 
 import Header from './components/header';
-import * as Calculator from './components/calculator';
+import * as Calculator from './utils/calculator';
 import OG from './components/og';
 import PreBoilGravity from './components/pre-boil-gravity';
+import PreBoilVolume from './components/pre-boil-volume';
 
 const lightBrown = '#58382a';
 const darkBrown = '#191919';
@@ -47,6 +48,9 @@ class App extends Component {
         <div css={container}>
           <div css={card}>
             <OG calculator={Calculator.OG} />
+          </div>
+          <div css={card}>
+            <PreBoilVolume calculator={Calculator.preBoilVol} />
           </div>
           <div css={card}>
             <PreBoilGravity calculator={Calculator.PreBoilG} />

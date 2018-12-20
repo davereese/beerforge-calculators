@@ -5,14 +5,6 @@ function convertToGravityUnits(value) {
   return (value / 1000) + 1;
 }
 
-function caclculatePreBoilVol(boilTime, vol, evap) {
-  // calculate pre-boil volume: PBVol = vol + (1.5 * hours) 1.5 is assumed boiling losses (gal)
-  const hrs = boilTime / 60;
-  const PBVol = (evap * hrs) + parseInt(vol);
-
-  return PBVol;
-}
-
 
 // PUBLIC FUNCTIONS
 
@@ -32,10 +24,18 @@ export function OG(malts, efficiency, volume) {
 }
 
 export function PreBoilG(OG, boilTime, vol, evap) {
-  const PBVol = caclculatePreBoilVol(boilTime, vol, evap);
+  const PBVol = preBoilVol(boilTime, vol, evap);
   // Pre-boil specific gravity points = (Post-boil volume * Post-boil gravity points) / Pre-boil volume
   const PreBoilG = Math.round( ((vol * (OG - 1) * 1000) / PBVol) * 1 ) / 1;
 
   // convert back to gravity units and return
   return convertToGravityUnits(PreBoilG);
+}
+
+export function preBoilVol(boilTime, vol, evap) {
+  // calculate pre-boil volume: PBVol = vol + (1.5 * hours) 1.5 is assumed boiling losses (gal)
+  const hrs = parseInt(boilTime) / 60;
+  const PBVol = (evap * hrs) + parseInt(vol);
+
+  return PBVol;
 }
