@@ -5,9 +5,10 @@ import { jsx, css } from '@emotion/core'
 
 import Header from './components/header';
 import * as Calculator from './utils/calculator';
-import OG from './components/og';
+import OriginalGravity from './components/og';
 import PreBoilGravity from './components/pre-boil-gravity';
 import PreBoilVolume from './components/pre-boil-volume';
+import FinalGravity from './components/fg';
 
 const lightBrown = '#58382a';
 const darkBrown = '#191919';
@@ -24,6 +25,8 @@ const page = css`
 
 const container = css`
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const card = css`
@@ -47,13 +50,16 @@ class App extends Component {
         <Header />
         <div css={container}>
           <div css={card}>
-            <OG calculator={Calculator.OG} />
+            <OriginalGravity calculator={Calculator.OG} />
           </div>
           <div css={card}>
             <PreBoilVolume calculator={Calculator.preBoilVol} />
           </div>
           <div css={card}>
             <PreBoilGravity calculator={Calculator.PreBoilG} />
+          </div>
+          <div css={card}>
+            <FinalGravity calculator={Calculator.FG} />
           </div>
         </div>
       </div>

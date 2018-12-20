@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class OG extends Component {
+class OriginalGravity extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -78,8 +78,8 @@ class OG extends Component {
   }
 }
 
-OG.propTypes = {
+OriginalGravity.propTypes = {
   calculator: PropTypes.func
 };
 
-export default OG;
+export default OriginalGravity;

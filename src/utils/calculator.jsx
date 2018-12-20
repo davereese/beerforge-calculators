@@ -8,6 +8,7 @@ function convertToGravityUnits(value) {
 
 // PUBLIC FUNCTIONS
 
+// * Original Gravity
 export function OG(malts, efficiency, volume) {
   let totalPoints = 0,
       OG = null;
@@ -23,6 +24,7 @@ export function OG(malts, efficiency, volume) {
   return convertToGravityUnits(OG);
 }
 
+// * Pre-Boil Gravity
 export function PreBoilG(OG, boilTime, vol, evap) {
   const PBVol = preBoilVol(boilTime, vol, evap);
   // Pre-boil specific gravity points = (Post-boil volume * Post-boil gravity points) / Pre-boil volume
@@ -32,10 +34,20 @@ export function PreBoilG(OG, boilTime, vol, evap) {
   return convertToGravityUnits(PreBoilG);
 }
 
+// * Pre-Boil Volume
 export function preBoilVol(boilTime, vol, evap) {
   // calculate pre-boil volume: PBVol = vol + (1.5 * hours) 1.5 is assumed boiling losses (gal)
-  const hrs = parseInt(boilTime) / 60;
+  const hrs = boilTime / 60;
   const PBVol = (evap * hrs) + parseInt(vol);
 
   return PBVol;
+}
+
+// * Final Gravity
+export function FG(OG, attenuation) {
+  // (Gravity-1000)-((Gravity-1000)*Attenuation rate%)+1000
+  const gravity = (OG - 1) * 1000,
+      aPercentage = attenuation/100;
+
+  return Math.round( ((gravity - (gravity * aPercentage) + 1000) / 1000) * 1000 ) / 1000;
 }
