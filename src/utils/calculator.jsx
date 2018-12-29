@@ -5,6 +5,18 @@ function convertToGravityUnits(value) {
   return (value / 1000) + 1;
 }
 
+function convertToPlato(SG) {
+  // E = -668.962 + (1262.45 * SG) - (776.43 * SG^2) + (182.94 * SG^3)  - specific gravity to plato
+  const E = -668.962 + (1262.45 * SG) - (776.43 * Math.pow(SG, 2)) + (182.94 * Math.pow(SG, 3));
+  return E;
+}
+
+function calculateRealExtract(OE, AE) {
+  // RE (real extract) = (0.8114 * AE) + (0.1886 * OE)
+  const RE = (0.8114 * AE) + (0.1886 * OE);
+  return RE;
+}
+
 
 // PUBLIC FUNCTIONS
 
@@ -50,4 +62,20 @@ export function FG(OG, attenuation) {
       aPercentage = attenuation/100;
 
   return Math.round( ((gravity - (gravity * aPercentage) + 1000) / 1000) * 1000 ) / 1000;
+}
+
+// * Alcohol Content
+export function alcoholContent(OG, FG, type = 'ABV') {
+  // ABW = (OE - RE) / (2.0665 - (.010665 * OE) )      - alcohol by weight
+  // ABV = (ABW * (FG / .794) )                        - alcohol by vol
+
+  const OE = convertToPlato(OG);
+  const AE = convertToPlato(FG);
+  const RE = calculateRealExtract(OE, AE);
+  const ABW = (OE - RE) / (2.0665 - (.010665 * OE) );
+  const ABV = Math.round( (ABW * (FG / .794) ) * 100 ) / 100;
+
+  const result = type === 'ABW' ? ABW : ABV;
+
+  return result;
 }

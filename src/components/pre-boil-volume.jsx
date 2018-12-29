@@ -28,7 +28,7 @@ class PreBoilVolume extends Component {
 
     const results = () => {
       const result = calculator(this.state.boil, this.state.volume, this.state.evap);
-       return !isNaN(result) && isFinite(result) ? result : '';
+       return !isNaN(result) && isFinite(result) ? result+' gal' : '';
     }
 
     return (

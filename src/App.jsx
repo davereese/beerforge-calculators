@@ -9,6 +9,7 @@ import OriginalGravity from './components/og';
 import PreBoilGravity from './components/pre-boil-gravity';
 import PreBoilVolume from './components/pre-boil-volume';
 import FinalGravity from './components/fg';
+import AlcoholContent from './components/alcohol-content';
 
 const lightBrown = '#58382a';
 const darkBrown = '#191919';
@@ -60,6 +61,9 @@ class App extends Component {
           </div>
           <div css={card}>
             <FinalGravity calculator={Calculator.FG} />
+          </div>
+          <div css={card}>
+            <AlcoholContent calculator={Calculator.alcoholContent} />
           </div>
         </div>
       </div>
