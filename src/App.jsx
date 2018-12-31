@@ -10,6 +10,9 @@ import PreBoilGravity from './components/pre-boil-gravity';
 import PreBoilVolume from './components/pre-boil-volume';
 import FinalGravity from './components/fg';
 import AlcoholContent from './components/alcohol-content';
+import ApparentAttenuation from './components/apparent-attenuation';
+import StrikeTemperature from './components/strike-temperature';
+import StrikeVolume from './components/strike-volume';
 
 const lightBrown = '#58382a';
 const darkBrown = '#191919';
@@ -51,19 +54,28 @@ class App extends Component {
         <Header />
         <div css={container}>
           <div css={card}>
-            <OriginalGravity calculator={Calculator.OG} />
+            <StrikeTemperature calculator={Calculator.strikeTemp} />
+          </div>
+          <div css={card}>
+            <StrikeVolume calculator={Calculator.strikeVolume} />
           </div>
           <div css={card}>
             <PreBoilVolume calculator={Calculator.preBoilVol} />
           </div>
           <div css={card}>
-            <PreBoilGravity calculator={Calculator.PreBoilG} />
+            <OriginalGravity calculator={Calculator.OG} />
+          </div>
+          <div css={card}>
+            <PreBoilGravity calculator={Calculator.preBoilG} />
           </div>
           <div css={card}>
             <FinalGravity calculator={Calculator.FG} />
           </div>
           <div css={card}>
             <AlcoholContent calculator={Calculator.alcoholContent} />
+          </div>
+          <div css={card}>
+            <ApparentAttenuation calculator={Calculator.attenuation} />
           </div>
         </div>
       </div>

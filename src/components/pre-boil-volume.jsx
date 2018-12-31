@@ -13,6 +13,7 @@ class PreBoilVolume extends Component {
 
   render() {
     const { calculator } = this.props;
+    let vol = null;
 
     const handleVolumeChange = (e) => {
       this.setState({volume: e.target.value});
@@ -28,7 +29,10 @@ class PreBoilVolume extends Component {
 
     const results = () => {
       const result = calculator(this.state.boil, this.state.volume, this.state.evap);
-       return !isNaN(result) && isFinite(result) ? result+' gal' : '';
+       if (!isNaN(result) && isFinite(result)) {
+         vol = 'gal';
+         return result;
+       }
     }
 
     return (
@@ -59,7 +63,7 @@ class PreBoilVolume extends Component {
         </div>
         <div>
           <h3>Result:</h3>
-          <p className="result">{results()}</p>
+          <p className="result">{results()} <label>{vol}</label></p>
         </div>
       </div>
     );

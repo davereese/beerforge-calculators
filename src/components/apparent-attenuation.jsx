@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class AlcoholContent extends Component {
+class ApparentAttenuation extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,7 +12,7 @@ class AlcoholContent extends Component {
 
   render() {
     const { calculator } = this.props;
-    let alc = null;
+    let atten = null;
 
     const handleOGChange = (e) => {
       this.setState({og: e.target.value});
@@ -22,10 +22,10 @@ class AlcoholContent extends Component {
       this.setState({fg: e.target.value});
     }
 
-    const ABVResults = () => {
+    const attenuationResults = () => {
       const result = calculator(this.state.og, this.state.fg);
-      if (!isNaN(result) && isFinite(result) && result > 0) {
-        alc = 'ABV';
+      if (!isNaN(result) && isFinite(result) && result > 0 && result <= 100) {
+        atten = 'attenuation';
         return result + '%';
       } else {
           return '';
@@ -34,7 +34,7 @@ class AlcoholContent extends Component {
 
     return (
       <div>
-        <h2>Alcohol Content</h2>
+        <h2>Apparent<br />Attenuation</h2>
         <div>
           <label htmlFor="og_potential">Original Gravity</label><br />
           <input
@@ -53,15 +53,15 @@ class AlcoholContent extends Component {
         </div>
         <div>
           <h3>Result:</h3>
-          <p className="result">{ABVResults()} <label>{alc}</label></p>
+          <p className="result">{attenuationResults()} <label>{atten}</label></p>
         </div>
       </div>
     );
   }
 }
 
-AlcoholContent.propTypes = {
-  calculator: PropTypes.func
+ApparentAttenuation.propTypes = {
+  calculator: PropTypes.func,
 };
 
-export default AlcoholContent;
+export default ApparentAttenuation;
