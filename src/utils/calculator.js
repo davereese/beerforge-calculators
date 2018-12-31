@@ -67,9 +67,22 @@ export function strikeTemp(grainTemp, targetTemp, ratio, vGrain, strikeVolume) {
   return Tw;
 }
 
+// * Total Water
+export function totalWater(batchSize, boilTime, boilOff, grainWeight) {
+  // boilTime is in hours, hense (boilTime / 60)
+  // totalWater = (((batchSize + trubLoss) / (1 - (shrinkage / 100))) / (1 - (boilTime * (boilOff / 100)))) + equipmentLoss + (grainWeight * absorptionRate)
+  const trubLoss = 0.5; // gal
+  const shrinkage = 4; // 4%
+  const equipmentLoss = 1; // gal
+  const absorptionRate = 0.15; // gal/lb of grain
+
+  const totalWater = (((batchSize + trubLoss) / (1 - (shrinkage / 100))) / (1 - ((boilTime / 60) * (boilOff / 100)))) + equipmentLoss + (grainWeight * absorptionRate);
+  return totalWater.toFixed(2);
+}
+
 // * Strike Volume
-export function strikeVolume(weight, ratio = 1.5) {
-  const sVol = (ratio * weight) / 4;
+export function strikeVolume(grainWeight, ratio = 1.5) {
+  const sVol = (ratio * grainWeight) / 4;
   return sVol;
 }
 

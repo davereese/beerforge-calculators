@@ -13,6 +13,7 @@ import AlcoholContent from './components/alcohol-content';
 import ApparentAttenuation from './components/apparent-attenuation';
 import StrikeTemperature from './components/strike-temperature';
 import StrikeVolume from './components/strike-volume';
+import TotalWater from './components/total-water';
 
 const lightBrown = '#58382a';
 const darkBrown = '#191919';
@@ -53,6 +54,9 @@ class App extends Component {
       <div css={page} className="App">
         <Header />
         <div css={container}>
+          <div css={card}>
+            <TotalWater calculator={Calculator.totalWater} />
+          </div>
           <div css={card}>
             <StrikeVolume calculator={Calculator.strikeVolume} />
           </div>
