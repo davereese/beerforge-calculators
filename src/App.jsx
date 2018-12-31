@@ -4,7 +4,7 @@ import { Component } from 'react';
 import { jsx, css } from '@emotion/core'
 
 import Header from './components/header';
-import * as Calculator from './utils/calculator';
+import * as Calculator from './utils/calculator.js';
 import OriginalGravity from './components/og';
 import PreBoilGravity from './components/pre-boil-gravity';
 import PreBoilVolume from './components/pre-boil-volume';
