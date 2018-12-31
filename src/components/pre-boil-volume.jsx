@@ -15,16 +15,9 @@ class PreBoilVolume extends Component {
     const { calculator } = this.props;
     let vol = null;
 
-    const handleVolumeChange = (e) => {
-      this.setState({volume: e.target.value});
-    }
-
-    const handleBoilChange = (e) => {
-      this.setState({boil: e.target.value});
-    }
-    
-    const handleEvapChange = (e) => {
-      this.setState({evap: e.target.value});
+    const handleInputChange = (e) => {
+      const type = e.target.name;
+      this.setState({[type]: e.target.value});
     }
 
     const results = () => {
@@ -44,21 +37,21 @@ class PreBoilVolume extends Component {
             name="volume"
             type="number"
             value={this.state.volume}
-            onChange={handleVolumeChange}
+            onChange={handleInputChange}
           ></input><br />
-          <label htmlFor="boil_length">Boil Length</label><br />
+          <label htmlFor="boil">Boil Length</label><br />
           <input
-            name="boil_length"
+            name="boil"
             type="number"
             value={this.state.boil}
-            onChange={handleBoilChange}
+            onChange={handleInputChange}
           ></input><br />
           <label htmlFor="evap">Evaporation Loss (gal)</label><br />
           <input
             name="evap"
             type="number"
             value={this.state.evap}
-            onChange={handleEvapChange}
+            onChange={handleInputChange}
           ></input><br />
         </div>
         <div>

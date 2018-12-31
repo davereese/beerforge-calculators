@@ -15,20 +15,9 @@ class PreBoilGravity extends Component {
   render() {
     const { calculator } = this.props;
 
-    const handleOGChange = (e) => {
-      this.setState({og: e.target.value});
-    }
-
-    const handleBoilChange = (e) => {
-      this.setState({boil: e.target.value});
-    }
-
-    const handleVolumeChange = (e) => {
-      this.setState({volume: e.target.value});
-    }
-    
-    const handleEvapChange = (e) => {
-      this.setState({evap: e.target.value});
+    const handleInputChange = (e) => {
+      const type = e.target.name;
+      this.setState({[type]: e.target.value});
     }
 
     const results = () => {
@@ -45,28 +34,28 @@ class PreBoilGravity extends Component {
             name="og"
             type="number"
             value={this.state.og}
-            onChange={handleOGChange}
+            onChange={handleInputChange}
           ></input><br />
           <label htmlFor="volume">Post-boil Volume (gal)</label><br />
           <input
             name="volume"
             type="number"
             value={this.state.volume}
-            onChange={handleVolumeChange}
+            onChange={handleInputChange}
           ></input><br />
-          <label htmlFor="boil_length">Boil Length</label><br />
+          <label htmlFor="boil">Boil Length</label><br />
           <input
-            name="boil_length"
+            name="boil"
             type="number"
             value={this.state.boil}
-            onChange={handleBoilChange}
+            onChange={handleInputChange}
           ></input><br />
           <label htmlFor="evap">Evaporation Loss (gal)</label><br />
           <input
             name="evap"
             type="number"
             value={this.state.evap}
-            onChange={handleEvapChange}
+            onChange={handleInputChange}
           ></input><br />
         </div>
         <div>

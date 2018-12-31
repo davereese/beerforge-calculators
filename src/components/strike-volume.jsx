@@ -14,12 +14,9 @@ class StrikeVolume extends Component {
     const { calculator } = this.props;
     let label = null;
 
-    const handleWeightChange = (e) => {
-      this.setState({weight: e.target.value});
-    }
-
-    const handleRatioChange = (e) => {
-      this.setState({ratio: e.target.value});
+    const handleInputChange = (e) => {
+      const type = e.target.name;
+      this.setState({[type]: e.target.value});
     }
 
     const results = () => {
@@ -39,14 +36,14 @@ class StrikeVolume extends Component {
             name="weight"
             type="number"
             value={this.state.weight}
-            onChange={handleWeightChange}
+            onChange={handleInputChange}
           ></input><br />
           <label htmlFor="ratio">Quarts per lb of grain</label><br />
           <input
             name="ratio"
             type="number"
             value={this.state.ratio}
-            onChange={handleRatioChange}
+            onChange={handleInputChange}
           ></input>
         </div>
         <div>

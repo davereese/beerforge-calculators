@@ -15,16 +15,9 @@ class StrikeTemperature extends Component {
     const { calculator } = this.props;
     let label = null;
 
-    const handleRatioChange = (e) => {
-      this.setState({ratio: e.target.value});
-    }
-
-    const handleTemp1Change = (e) => {
-      this.setState({temp1: e.target.value});
-    }
-
-    const handleTemp2Change = (e) => {
-      this.setState({temp2: e.target.value});
+    const handleInputChange = (e) => {
+      const type = e.target.name;
+      this.setState({[type]: e.target.value});
     }
 
     const results = () => {
@@ -44,21 +37,21 @@ class StrikeTemperature extends Component {
             name="ratio"
             type="number"
             value={this.state.ratio}
-            onChange={handleRatioChange}
+            onChange={handleInputChange}
           ></input><br />
           <label htmlFor="temp1">Grain Temperature (°F)</label><br />
           <input
             name="temp1"
             type="number"
             value={this.state.temp1}
-            onChange={handleTemp1Change}
+            onChange={handleInputChange}
           ></input><br />
           <label htmlFor="temp2">Target Temperature (°F)</label><br />
           <input
             name="temp2"
             type="number"
             value={this.state.temp2}
-            onChange={handleTemp2Change}
+            onChange={handleInputChange}
           ></input><br />
         </div>
         <div>

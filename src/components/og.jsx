@@ -15,20 +15,9 @@ class OriginalGravity extends Component {
   render() {
     const { calculator } = this.props;
 
-    const handlePotentialChange = (e) => {
-      this.setState({potential: e.target.value});
-    }
-
-    const handleWeightChange = (e) => {
-      this.setState({weight: e.target.value});
-    }
-
-    const handleEfficiencyChange = (e) => {
-      this.setState({efficiency: e.target.value});
-    }
-
-    const handleVolumeChange = (e) => {
-      this.setState({volume: e.target.value});
+    const handleInputChange = (e) => {
+      const type = e.target.name;
+      this.setState({[type]: e.target.value});
     }
 
     const results = () => {
@@ -40,33 +29,33 @@ class OriginalGravity extends Component {
       <div>
         <h2>Original Gravity</h2>
         <div>
-          <label htmlFor="malt_potential">Malt Potential</label><br />
+          <label htmlFor="potential">Malt Potential</label><br />
           <input
-            name="malt_potential"
+            name="potential"
             type="number"
             value={this.state.potential}
-            onChange={handlePotentialChange}
+            onChange={handleInputChange}
           ></input><br />
-          <label htmlFor="malt_weight">Malt Weight (lbs)</label><br />
+          <label htmlFor="weight">Malt Weight (lbs)</label><br />
           <input
-            name="malt_weight"
+            name="weight"
             type="number"
             value={this.state.weight}
-            onChange={handleWeightChange}
+            onChange={handleInputChange}
           ></input><br />
           <label htmlFor="efficiency">Mash Efficiency (%)</label><br />
           <input
             name="efficiency"
             type="number"
             value={this.state.efficiency}
-            onChange={handleEfficiencyChange}
+            onChange={handleInputChange}
           ></input><br />
           <label htmlFor="volume">Post-boil Volume (gal)</label><br />
           <input
             name="volume"
             type="number"
             value={this.state.volume}
-            onChange={handleVolumeChange}
+            onChange={handleInputChange}
           ></input><br />
         </div>
         <div>

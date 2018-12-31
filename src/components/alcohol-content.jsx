@@ -14,12 +14,9 @@ class AlcoholContent extends Component {
     const { calculator } = this.props;
     let alc = null;
 
-    const handleOGChange = (e) => {
-      this.setState({og: e.target.value});
-    }
-
-    const handleFGChange = (e) => {
-      this.setState({fg: e.target.value});
+    const handleInputChange = (e) => {
+      const type = e.target.name;
+      this.setState({[type]: e.target.value});
     }
 
     const ABVResults = () => {
@@ -36,19 +33,19 @@ class AlcoholContent extends Component {
       <div>
         <h2>Alcohol Content</h2>
         <div>
-          <label htmlFor="og_potential">Original Gravity</label><br />
+          <label htmlFor="og">Original Gravity</label><br />
           <input
-            name="og_potential"
+            name="og"
             type="number"
             value={this.state.og}
-            onChange={handleOGChange}
+            onChange={handleInputChange}
           ></input><br />
-          <label htmlFor="fg_weight">Final Gravity</label><br />
+          <label htmlFor="fg">Final Gravity</label><br />
           <input
-            name="fg_weight"
+            name="fg"
             type="number"
             value={this.state.fg}
-            onChange={handleFGChange}
+            onChange={handleInputChange}
           ></input><br />
         </div>
         <div>

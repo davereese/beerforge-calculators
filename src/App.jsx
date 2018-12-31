@@ -54,10 +54,10 @@ class App extends Component {
         <Header />
         <div css={container}>
           <div css={card}>
-            <StrikeTemperature calculator={Calculator.strikeTemp} />
+            <StrikeVolume calculator={Calculator.strikeVolume} />
           </div>
           <div css={card}>
-            <StrikeVolume calculator={Calculator.strikeVolume} />
+            <StrikeTemperature calculator={Calculator.strikeTemp} />
           </div>
           <div css={card}>
             <PreBoilVolume calculator={Calculator.preBoilVol} />

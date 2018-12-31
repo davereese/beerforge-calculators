@@ -13,12 +13,9 @@ class FinalGravity extends Component {
   render() {
     const { calculator } = this.props;
 
-    const handleOGChange = (e) => {
-      this.setState({og: e.target.value});
-    }
-
-    const handleAttenuationChange = (e) => {
-      this.setState({attenuation: e.target.value});
+    const handleInputChange = (e) => {
+      const type = e.target.name;
+      this.setState({[type]: e.target.value});
     }
 
     const results = () => {
@@ -35,14 +32,14 @@ class FinalGravity extends Component {
             name="og"
             type="number"
             value={this.state.og}
-            onChange={handleOGChange}
+            onChange={handleInputChange}
           ></input><br />
           <label htmlFor="attenuation">Attenuation (%)</label><br />
           <input
             name="attenuation"
             type="number"
             value={this.state.attenuation}
-            onChange={handleAttenuationChange}
+            onChange={handleInputChange}
           ></input>
         </div>
         <div>
