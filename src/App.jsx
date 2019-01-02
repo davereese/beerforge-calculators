@@ -14,6 +14,7 @@ import ApparentAttenuation from './components/apparent-attenuation';
 import StrikeTemperature from './components/strike-temperature';
 import StrikeVolume from './components/strike-volume';
 import TotalWater from './components/total-water';
+import SpargeVolume from './components/sparge-volume';
 
 const lightBrown = '#58382a';
 const darkBrown = '#191919';
@@ -21,7 +22,7 @@ const white = '#fff;';
 const yellow = '#f4d03f';
 
 const page = css`
-  padding: 100px 50px 0;
+  padding: 100px 50px 50px;
   width: 100%;
   min-height: 100vh;
   background: linear-gradient(125.4deg, ${lightBrown} 0%, ${darkBrown} 118.45%);
@@ -62,6 +63,9 @@ class App extends Component {
           </div>
           <div css={card}>
             <StrikeTemperature calculator={Calculator.strikeTemp} />
+          </div>
+          <div css={card}>
+            <SpargeVolume calculator={Calculator.spargeVolume} />
           </div>
           <div css={card}>
             <PreBoilVolume calculator={Calculator.preBoilVol} />

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class StrikeTemperature extends Component {
+class SpargeVolume extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ratio: '',
-      temp1: '',
-      temp2: '',
+      totalV: '',
+      mashV: '',
     }
   }
 
@@ -21,38 +20,31 @@ class StrikeTemperature extends Component {
     }
 
     const results = () => {
-      const result = calculator(this.state.temp1, this.state.temp2, this.state.ratio);
+      const result = calculator(this.state.totalV, this.state.mashV);
       if (!isNaN(result) && isFinite(result) && result > 0) {
-        label = '°F';
+        label = 'gal';
         return result;
       }
     }
 
     return (
       <div>
-        <h2>Strike Water<br />Temperature</h2>
+        <h2>Sparge Water<br />Volume (gal)</h2>
         <div>
-          <label htmlFor="ratio">Quarts per lb of grain</label><br />
+          <label htmlFor="totalV">Total water volume</label><br />
           <input
-            name="ratio"
+            name="totalV"
             type="number"
-            value={this.state.ratio}
+            value={this.state.totalV}
             onChange={handleInputChange}
           ></input><br />
-          <label htmlFor="temp1">Grain Temperature (°F)</label><br />
+          <label htmlFor="mashV">Mash water volume</label><br />
           <input
-            name="temp1"
+            name="mashV"
             type="number"
-            value={this.state.temp1}
+            value={this.state.mashV}
             onChange={handleInputChange}
-          ></input><br />
-          <label htmlFor="temp2">Target Temperature (°F)</label><br />
-          <input
-            name="temp2"
-            type="number"
-            value={this.state.temp2}
-            onChange={handleInputChange}
-          ></input><br />
+          ></input>
         </div>
         <div>
           <h3>Result:</h3>
@@ -63,8 +55,8 @@ class StrikeTemperature extends Component {
   }
 }
 
-StrikeTemperature.propTypes = {
+SpargeVolume.propTypes = {
   calculator: PropTypes.func
 };
 
-export default StrikeTemperature;
+export default SpargeVolume;

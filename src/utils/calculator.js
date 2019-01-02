@@ -59,14 +59,6 @@ export function preBoilVol(boilTime, vol, evap) {
   return PBVol;
 }
 
-// * Strike Temperature
-export function strikeTemp(grainTemp, targetTemp, ratio, vGrain, strikeVolume) {
-  // R - ratio of water to grain, T1 - initial temp of grain, T2 - mash temp target
-  // Strike Water Temperature Tw = (0.2 / R)(T2 - T1) + T2
-  const Tw = ((0.2 / ratio) * (targetTemp - grainTemp) + parseInt(targetTemp)).toFixed(2);
-  return Tw;
-}
-
 // * Total Water
 export function totalWater(batchSize, boilTime, boilOff, grainWeight) {
   // boilTime is in hours, hense (boilTime / 60)
@@ -80,10 +72,23 @@ export function totalWater(batchSize, boilTime, boilOff, grainWeight) {
   return totalWater.toFixed(2);
 }
 
-// * Strike Volume
+// * Strike Water Volume
 export function strikeVolume(grainWeight, ratio = 1.5) {
   const sVol = (ratio * grainWeight) / 4;
   return sVol;
+}
+
+// * Strike Water Temperature
+export function strikeTemp(grainTemp, targetTemp, ratio, vGrain, strikeVolume) {
+  // R - ratio of water to grain, T1 - initial temp of grain, T2 - mash temp target
+  // Strike Water Temperature Tw = (0.2 / R)(T2 - T1) + T2
+  const Tw = ((0.2 / ratio) * (targetTemp - grainTemp) + parseInt(targetTemp)).toFixed(2);
+  return Tw;
+}
+
+// * Sparge Water Volume
+export function spargeVolume(totalWater, mashVolume) {
+  return (totalWater - mashVolume).toFixed(2);
 }
 
 // * Final Gravity
