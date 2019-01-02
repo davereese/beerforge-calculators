@@ -24,41 +24,6 @@ function calculateRealExtract(OE, AE) {
 
 // PUBLIC FUNCTIONS
 
-// * Original Gravity
-export function OG(malts, efficiency, volume) {
-  let totalPoints = 0,
-      OG = null;
-
-  for ( let i = 0; i < malts.length; i++ ) {
-    totalPoints += convertToGravityPoints(malts[i].potential) * malts[i].weight;
-  }
-
-  // multiply by efficiency factor
-  OG = totalPoints * (efficiency/100) / volume;
-
-  // convert back to gravity units and return
-  return convertToGravityUnits(OG);
-}
-
-// * Pre-Boil Gravity
-export function preBoilG(OG, boilTime, vol, evap) {
-  const PBVol = preBoilVol(boilTime, vol, evap);
-  // Pre-boil specific gravity points = (Post-boil volume * Post-boil gravity points) / Pre-boil volume
-  const PreBoilG = (vol * convertToGravityPoints(OG)) / PBVol;
-
-  // convert back to gravity units and return
-  return convertToGravityUnits(PreBoilG);
-}
-
-// * Pre-Boil Volume
-export function preBoilVol(boilTime, vol, evap) {
-  // calculate pre-boil volume: PBVol = vol + (1.5 * hours) 1.5 is assumed boiling losses (gal)
-  const hrs = boilTime / 60;
-  const PBVol = (evap * hrs) + parseInt(vol);
-
-  return PBVol;
-}
-
 // * Total Water
 export function totalWater(batchSize, boilTime, boilOff, grainWeight) {
   // boilTime is in hours, hense (boilTime / 60)
@@ -89,6 +54,41 @@ export function strikeTemp(grainTemp, targetTemp, ratio, vGrain, strikeVolume) {
 // * Sparge Water Volume
 export function spargeVolume(totalWater, mashVolume) {
   return (totalWater - mashVolume).toFixed(2);
+}
+
+// * Pre-Boil Gravity
+export function preBoilG(OG, boilTime, vol, evap) {
+  const PBVol = preBoilVol(boilTime, vol, evap);
+  // Pre-boil specific gravity points = (Post-boil volume * Post-boil gravity points) / Pre-boil volume
+  const PreBoilG = (vol * convertToGravityPoints(OG)) / PBVol;
+
+  // convert back to gravity units and return
+  return convertToGravityUnits(PreBoilG);
+}
+
+// * Pre-Boil Volume
+export function preBoilVol(boilTime, vol, evap) {
+  // calculate pre-boil volume: PBVol = vol + (1.5 * hours) 1.5 is assumed boiling losses (gal)
+  const hrs = boilTime / 60;
+  const PBVol = (evap * hrs) + parseInt(vol);
+
+  return PBVol;
+}
+
+// * Original Gravity
+export function OG(malts, efficiency, volume) {
+  let totalPoints = 0,
+      OG = null;
+
+  for ( let i = 0; i < malts.length; i++ ) {
+    totalPoints += convertToGravityPoints(malts[i].potential) * malts[i].weight;
+  }
+
+  // multiply by efficiency factor
+  OG = totalPoints * (efficiency/100) / volume;
+
+  // convert back to gravity units and return
+  return convertToGravityUnits(OG);
 }
 
 // * Final Gravity
