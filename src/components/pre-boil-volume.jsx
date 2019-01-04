@@ -5,9 +5,8 @@ class PreBoilVolume extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      boil: '',
-      volume: '',
-      evap: '',
+      totalWaterVol: '',
+      grainWeight: '',
     }
   }
 
@@ -21,8 +20,8 @@ class PreBoilVolume extends Component {
     }
 
     const results = () => {
-      const result = calculator(this.state.boil, this.state.volume, this.state.evap);
-       if (!isNaN(result) && isFinite(result)) {
+      const result = calculator(this.state.totalWaterVol, this.state.grainWeight);
+       if (!isNaN(result) && isFinite(result) && result > 0) {
          vol = 'gal';
          return result;
        }
@@ -32,25 +31,18 @@ class PreBoilVolume extends Component {
       <div>
         <h2>Pre-Boil Volume</h2>
         <div>
-          <label htmlFor="volume">Post-boil Volume (gal)</label><br />
+          <label htmlFor="totalWaterVol">Total Water Volume</label><br />
           <input
-            name="volume"
+            name="totalWaterVol"
             type="number"
-            value={this.state.volume}
+            value={this.state.totalWaterVol}
             onChange={handleInputChange}
           ></input><br />
-          <label htmlFor="boil">Boil Length</label><br />
+          <label htmlFor="grainWeight">Grain Weight (lbs)</label><br />
           <input
-            name="boil"
+            name="grainWeight"
             type="number"
-            value={this.state.boil}
-            onChange={handleInputChange}
-          ></input><br />
-          <label htmlFor="evap">Evaporation Loss (gal)</label><br />
-          <input
-            name="evap"
-            type="number"
-            value={this.state.evap}
+            value={this.state.grainWeight}
             onChange={handleInputChange}
           ></input><br />
         </div>

@@ -36,7 +36,7 @@ class OriginalGravity extends Component {
             value={this.state.potential}
             onChange={handleInputChange}
           ></input><br />
-          <label htmlFor="weight">Malt Weight (lbs)</label><br />
+          <label htmlFor="weight">Grain Weight (lbs)</label><br />
           <input
             name="weight"
             type="number"

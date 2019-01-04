@@ -55,7 +55,7 @@ class TotalWater extends Component {
             value={this.state.boilTime}
             onChange={handleInputChange}
           ></input><br />
-          <label htmlFor="boilOff">Boil Off % per Hour</label><br />
+          <label htmlFor="boilOff">Evaporation Loss %/hr</label><br />
           <input
             name="boilOff"
             type="number"

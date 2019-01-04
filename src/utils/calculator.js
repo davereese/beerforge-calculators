@@ -1,3 +1,9 @@
+// CONSTANTS
+const trubLoss = 0.5; // gal
+const shrinkage = 4; // 4%
+const equipmentLoss = 1; // gal
+const absorptionRate = 0.15; // gal/lb of grain
+
 
 // PRIVATE FUNCTIONS
 
@@ -28,10 +34,6 @@ function calculateRealExtract(OE, AE) {
 export function totalWater(batchSize, boilTime, boilOff, grainWeight) {
   // boilTime is in hours, hense (boilTime / 60)
   // totalWater = (((batchSize + trubLoss) / (1 - (shrinkage / 100))) / (1 - (boilTime * (boilOff / 100)))) + equipmentLoss + (grainWeight * absorptionRate)
-  const trubLoss = 0.5; // gal
-  const shrinkage = 4; // 4%
-  const equipmentLoss = 1; // gal
-  const absorptionRate = 0.15; // gal/lb of grain
 
   const totalWater = (((batchSize + trubLoss) / (1 - (shrinkage / 100))) / (1 - ((boilTime / 60) * (boilOff / 100)))) + equipmentLoss + (grainWeight * absorptionRate);
   return totalWater.toFixed(2);
@@ -56,9 +58,16 @@ export function spargeVolume(totalWater, mashVolume) {
   return (totalWater - mashVolume).toFixed(2);
 }
 
+// Boil-Off Evaporation Percentage
+export function evaporationPercent(postBoilV, preBoilV, minutes) {
+  // 100 - (postBoil volume * 100 / preBoil volume)
+  const result = (100 - (postBoilV * 100 / preBoilV)) / (minutes / 60);
+  return result.toFixed(1);
+}
+
 // * Pre-Boil Gravity
-export function preBoilG(OG, boilTime, vol, evap) {
-  const PBVol = preBoilVol(boilTime, vol, evap);
+export function preBoilG(OG, grainVol, totalWaterVol, vol) {
+  const PBVol = preBoilVol(totalWaterVol, grainVol);
   // Pre-boil specific gravity points = (Post-boil volume * Post-boil gravity points) / Pre-boil volume
   const PreBoilG = (vol * convertToGravityPoints(OG)) / PBVol;
 
@@ -67,12 +76,10 @@ export function preBoilG(OG, boilTime, vol, evap) {
 }
 
 // * Pre-Boil Volume
-export function preBoilVol(boilTime, vol, evap) {
-  // calculate pre-boil volume: PBVol = vol + (1.5 * hours) 1.5 is assumed boiling losses (gal)
-  const hrs = boilTime / 60;
-  const PBVol = (evap * hrs) + parseInt(vol);
-
-  return PBVol;
+export function preBoilVol(totalWaterVol, grainVol) {
+  // totalWaterVol - (grainVol * absorptionRate) - equipmentLoss
+  const result = totalWaterVol - (grainVol * absorptionRate) - equipmentLoss;
+  return result.toFixed(2)
 }
 
 // * Original Gravity

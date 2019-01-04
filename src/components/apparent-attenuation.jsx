@@ -22,10 +22,8 @@ class ApparentAttenuation extends Component {
     const attenuationResults = () => {
       const result = calculator(this.state.og, this.state.fg);
       if (!isNaN(result) && isFinite(result) && result > 0 && result <= 100) {
-        atten = 'attenuation';
-        return result + '%';
-      } else {
-          return '';
+        atten = '%';
+        return result;
       }
     }
 
@@ -50,7 +48,7 @@ class ApparentAttenuation extends Component {
         </div>
         <div>
           <h3>Result:</h3>
-          <p className="result">{attenuationResults()} <label>{atten}</label></p>
+          <p className="result">{attenuationResults()}<label>{atten}</label></p>
         </div>
       </div>
     );

@@ -7,8 +7,8 @@ class PreBoilGravity extends Component {
     this.state = {
       og: '',
       volume: '',
-      boil: '',
-      evap: '',
+      grainVol: '',
+      totalWaterVol: '',
     }
   }
 
@@ -21,19 +21,26 @@ class PreBoilGravity extends Component {
     }
 
     const results = () => {
-      const result = calculator(this.state.og, this.state.boil, this.state.volume, this.state.evap);
-       return !isNaN(result) && isFinite(result) ? result : '';
+      const result = calculator(this.state.og, this.state.grainVol, this.state.totalWaterVol, this.state.volume);
+       return !isNaN(result) && isFinite(result) && result > 1 ? result : '';
     }
 
     return (
       <div>
         <h2>Pre-Boil Gravity</h2>
         <div>
-          <label htmlFor="og">Original Gravity</label><br />
+        <label htmlFor="grainVol">Grain Weight (lbs)</label><br />
           <input
-            name="og"
+            name="grainVol"
             type="number"
-            value={this.state.og}
+            value={this.state.grainVol}
+            onChange={handleInputChange}
+          ></input><br />
+          <label htmlFor="totalWaterVol">Total Water Volume</label><br />
+          <input
+            name="totalWaterVol"
+            type="number"
+            value={this.state.totalWaterVol}
             onChange={handleInputChange}
           ></input><br />
           <label htmlFor="volume">Post-boil Volume (gal)</label><br />
@@ -43,18 +50,11 @@ class PreBoilGravity extends Component {
             value={this.state.volume}
             onChange={handleInputChange}
           ></input><br />
-          <label htmlFor="boil">Boil Length</label><br />
+          <label htmlFor="og">Original Gravity</label><br />
           <input
-            name="boil"
+            name="og"
             type="number"
-            value={this.state.boil}
-            onChange={handleInputChange}
-          ></input><br />
-          <label htmlFor="evap">Evaporation Loss (gal)</label><br />
-          <input
-            name="evap"
-            type="number"
-            value={this.state.evap}
+            value={this.state.og}
             onChange={handleInputChange}
           ></input><br />
         </div>
