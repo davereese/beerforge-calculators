@@ -31,7 +31,7 @@ class StrikeVolume extends Component {
       <div>
         <h2>Strike Water<br />Volume</h2>
         <div>
-          <label htmlFor="weight">Grain Weight (lbs)</label><br />
+          <label htmlFor="weight">Malt Weight (lbs)</label><br />
           <input
             name="weight"
             type="number"

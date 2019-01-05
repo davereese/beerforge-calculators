@@ -128,3 +128,21 @@ export function attenuation(OG, FG) {
   const A = (100 * (OG - FG)/(OG - 1.0)).toFixed(1);
   return A;
 }
+
+// * SRM
+export function SRM(malts, vol) {
+  // MCU = (grain_color * grain_weight_lbs) / volume_gallons    - Malt Color Units
+  // SRM = 1.4922 * [MCU ^ 0.6859]                              - The more accurate Morey equation
+  let MCU = 0,
+      SRM;
+
+  for ( let i = 0; i < malts.length; i++ ) {
+    MCU += (malts[i].color * malts[i].weight) / vol;
+
+    MCU = Infinity === MCU ? 0 : MCU;
+  }
+
+  SRM = (1.4922 * Math.pow(MCU, 0.6859)).toFixed(2);
+
+  return SRM;
+}

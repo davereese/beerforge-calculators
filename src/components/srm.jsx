@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class OriginalGravity extends Component {
+class SRM extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      potential: '',
+      color: '',
       weight: '',
-      efficiency: '',
       volume: '',
     }
   }
 
   render() {
     const { calculator } = this.props;
+    let label = null;
 
     const handleInputChange = (e) => {
       const type = e.target.name;
@@ -21,19 +21,24 @@ class OriginalGravity extends Component {
     }
 
     const results = () => {
-      const result = calculator([{potential: this.state.potential, weight: this.state.weight}], this.state.efficiency, this.state.volume);
-       return !isNaN(result) && isFinite(result) ? result : '';
+      const result = calculator([{color: this.state.color, weight: this.state.weight}], this.state.volume);
+      if (!isNaN(result) && isFinite(result) && result > 0) {
+        label = 'SRM';
+        return result;
+      } else {
+          return '';
+      }
     }
 
     return (
       <div>
-        <h2>Original Gravity</h2>
+        <h2>Beer Color</h2>
         <div>
-          <label htmlFor="potential">Malt Potential</label><br />
+          <label htmlFor="color">Malt Color</label><br />
           <input
-            name="potential"
+            name="color"
             type="number"
-            value={this.state.potential}
+            value={this.state.color}
             onChange={handleInputChange}
           ></input><br />
           <label htmlFor="weight">Malt Weight (lbs)</label><br />
@@ -43,14 +48,7 @@ class OriginalGravity extends Component {
             value={this.state.weight}
             onChange={handleInputChange}
           ></input><br />
-          <label htmlFor="efficiency">Mash Efficiency (%)</label><br />
-          <input
-            name="efficiency"
-            type="number"
-            value={this.state.efficiency}
-            onChange={handleInputChange}
-          ></input><br />
-          <label htmlFor="volume">Post-boil Volume (gal)</label><br />
+          <label htmlFor="volume">Final Volume (gal)</label><br />
           <input
             name="volume"
             type="number"
@@ -60,15 +58,15 @@ class OriginalGravity extends Component {
         </div>
         <div>
           <h3>Result:</h3>
-          <p className="result">{results()}</p>
+          <p className="result">{results()} <label>{label}</label></p>
         </div>
       </div>
     );
   }
 }
 
-OriginalGravity.propTypes = {
+SRM.propTypes = {
   calculator: PropTypes.func
 };
 
-export default OriginalGravity;
+export default SRM;

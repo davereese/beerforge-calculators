@@ -41,7 +41,7 @@ class TotalWater extends Component {
             value={this.state.batchSize}
             onChange={handleInputChange}
           ></input><br />
-          <label htmlFor="grainWeight">Grain Weight (lbs)</label><br />
+          <label htmlFor="grainWeight">Malt Weight (lbs)</label><br />
           <input
             name="grainWeight"
             type="number"

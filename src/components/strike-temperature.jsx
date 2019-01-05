@@ -39,7 +39,7 @@ class StrikeTemperature extends Component {
             value={this.state.ratio}
             onChange={handleInputChange}
           ></input><br />
-          <label htmlFor="temp1">Grain Temperature (°F)</label><br />
+          <label htmlFor="temp1">Malt Temperature (°F)</label><br />
           <input
             name="temp1"
             type="number"

@@ -38,7 +38,7 @@ class PreBoilVolume extends Component {
             value={this.state.totalWaterVol}
             onChange={handleInputChange}
           ></input><br />
-          <label htmlFor="grainWeight">Grain Weight (lbs)</label><br />
+          <label htmlFor="grainWeight">Malt Weight (lbs)</label><br />
           <input
             name="grainWeight"
             type="number"

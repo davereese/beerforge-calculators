@@ -16,6 +16,7 @@ import StrikeVolume from './components/strike-volume';
 import TotalWater from './components/total-water';
 import SpargeVolume from './components/sparge-volume';
 import EvaporationPercent from './components/evap-percent';
+import SRM from './components/srm';
 
 const lightBrown = '#58382a';
 const darkBrown = '#191919';
@@ -88,6 +89,9 @@ class App extends Component {
           </div>
           <div css={card}>
             <ApparentAttenuation calculator={Calculator.attenuation} />
+          </div>
+          <div css={card}>
+            <SRM calculator={Calculator.SRM} />
           </div>
         </div>
       </div>

@@ -29,7 +29,7 @@ class PreBoilGravity extends Component {
       <div>
         <h2>Pre-Boil Gravity</h2>
         <div>
-        <label htmlFor="grainVol">Grain Weight (lbs)</label><br />
+        <label htmlFor="grainVol">Malt Weight (lbs)</label><br />
           <input
             name="grainVol"
             type="number"
