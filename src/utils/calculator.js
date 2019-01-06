@@ -146,3 +146,30 @@ export function SRM(malts, vol) {
 
   return SRM;
 }
+
+// * CO2
+export function CO2(temp, vol, type, beerVol) {
+  let X,
+      dissolvedCO2 = ((-0.9753) * Math.log(temp) + 4.9648);
+      beerVol = null === beerVol ? 5 : '' === beerVol.toString() ? 5 : beerVol;
+
+  switch (type) {
+    case 'forced':
+      // P = -16.6999 - 0.0101059*T + 0.00116512*T^2 + 0.173354*T*V + 4.24267*V - 0.0684226*V^2
+      X = (-16.6999 - (0.0101059 * temp) + (0.00116512 * Math.pow(temp, 2)) + (0.173354 * temp * vol) + (4.24267 * vol) - (0.0684226 * Math.pow(vol, 2))).toFixed(2);
+      break;
+    case 'cornSugar':
+      X = ((((vol - dissolvedCO2) * 4 * (beerVol * 3.8)) / 28.34952) * 1).toFixed(2);
+      break;
+    case 'caneSugar':
+      X = ((((vol - dissolvedCO2) * 4 * (beerVol * 3.8)) / 28.34952) * 0.91).toFixed(2);
+      break;
+    case 'dme':
+      X = ((((vol - dissolvedCO2) * 5.33 * (beerVol * 3.8) ) / 28.34952) * 0.91).toFixed(2);
+      break;
+    default:
+      break;
+  }
+
+  return X;
+}
