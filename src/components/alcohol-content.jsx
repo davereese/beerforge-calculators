@@ -7,6 +7,7 @@ class AlcoholContent extends Component {
     this.state = {
       og: '',
       fg: '',
+      formula: 'ABV',
     }
   }
 
@@ -19,10 +20,15 @@ class AlcoholContent extends Component {
       this.setState({[type]: e.target.value});
     }
 
+    const handleCheckboxChange = (e) => {
+      const value = this.state.formula === 'ABV' ? 'ABW' : 'ABV';
+      this.setState({formula: value});
+    }
+
     const ABVResults = () => {
-      const result = calculator(this.state.og, this.state.fg);
+      const result = calculator(this.state.og, this.state.fg, this.state.formula);
       if (!isNaN(result) && isFinite(result) && result > 0) {
-        alc = 'ABV';
+        alc = this.state.formula;
         return result + '%';
       } else {
           return '';
@@ -47,6 +53,15 @@ class AlcoholContent extends Component {
             value={this.state.fg}
             onChange={handleInputChange}
           ></input><br />
+          <label htmlFor="formula">ABV</label>
+          <input
+            type="checkbox"
+            id="formula"
+            name="formula"
+            value={this.state.formula}
+            onChange={handleCheckboxChange}
+          ></input>
+          <label htmlFor="formula"><span className="toggle"></span>ABW</label><br />
         </div>
         <div>
           <h3>Result:</h3>

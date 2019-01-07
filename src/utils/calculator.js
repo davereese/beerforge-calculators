@@ -127,9 +127,9 @@ export function alcoholContent(OG, FG, type = 'ABV') {
   const AE = convertToPlato(FG);
   const RE = calculateRealExtract(OE, AE);
   const ABW = (OE - RE) / (2.0665 - (.010665 * OE) );
-  const ABV = (ABW * (FG / .794) ).toFixed(2);
+  const ABV = (ABW * (FG / .794) );
 
-  const result = type === 'ABW' ? ABW : ABV;
+  const result = type === 'ABW' ? ABW.toFixed(2) : ABV.toFixed(2);
 
   return result;
 }
