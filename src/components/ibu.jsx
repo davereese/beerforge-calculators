@@ -88,15 +88,15 @@ class IBU extends Component {
             value={this.state.vol}
             onChange={handleInputChange}
           ></input><br />
-          <label htmlFor="formula">Tinseth</label>
+          <label htmlFor="ibuFormula">Tinseth</label>
           <input
             type="checkbox"
-            id="formula"
+            id="ibuFormula"
             name="formula"
             value={this.state.formula}
             onChange={handleCheckboxChange}
           ></input>
-          <label htmlFor="formula"><span className="toggle"></span>Rager</label><br />
+          <label htmlFor="ibuFormula"><span className="toggle"></span>Rager</label><br />
         </div>
         <div>
           <h3>Result:</h3>

@@ -53,15 +53,15 @@ class AlcoholContent extends Component {
             value={this.state.fg}
             onChange={handleInputChange}
           ></input><br />
-          <label htmlFor="formula">ABV</label>
+          <label htmlFor="abvFormula">ABV</label>
           <input
             type="checkbox"
-            id="formula"
+            id="abvFormula"
             name="formula"
             value={this.state.formula}
             onChange={handleCheckboxChange}
           ></input>
-          <label htmlFor="formula"><span className="toggle"></span>ABW</label><br />
+          <label htmlFor="abvFormula"><span className="toggle"></span>ABW</label><br />
         </div>
         <div>
           <h3>Result:</h3>
