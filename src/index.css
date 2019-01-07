@@ -66,3 +66,40 @@ select {
 select::-ms-expand {
   display: none; /* hide the default arrow in ie10 and ie11 */
 }
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"]~label .toggle {
+  display: inline-block;
+  position: relative;
+  margin: 0 5px;
+  width: 50px;
+  height: 30px;
+  border: none;
+  border-radius: 3px;
+  background-color: rgba(25, 25, 25, 0.5);
+  outline: none;
+  color: #fff;
+  vertical-align: middle;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+input[type="checkbox"]~label .toggle::before {
+  content: '';
+  display: block;
+  position: absolute;
+  margin-top: 4px;
+  left: 4px;
+  width: 22px;
+  height: 22px;
+  border-radius: 2px;
+  background-color: rgba(233,102,44,0.3);
+  transition: left 0.3s;
+}
+
+input[type="checkbox"]:checked~label .toggle::before {
+  left: 24px;
+}

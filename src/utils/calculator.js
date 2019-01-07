@@ -27,6 +27,18 @@ function calculateRealExtract(OE, AE) {
   return RE;
 }
 
+function oz2kg(number) {
+  return number * 0.0283495;
+}
+
+function gal2l(number) {
+  return number * 3.78541;
+}
+
+function tanh(number) {
+  return (Math.exp(number) - Math.exp(-number)) / (Math.exp(number) + Math.exp(-number));
+};
+
 
 // PUBLIC FUNCTIONS
 
@@ -127,6 +139,29 @@ export function attenuation(OG, FG) {
   // A = 100 * (OG – FG)/(OG – 1.0)
   const A = (100 * (OG - FG)/(OG - 1.0)).toFixed(1);
   return A;
+}
+
+// * IBU
+export function IBU(hops, OG, vol, type = 'rager') {
+  // TODO: sepatate the unit conversions out of this function
+
+  let utilization,
+      IBU = 0;
+
+  for ( let i = 0; i < hops.length; i++ ) {
+    const utilizationFactor = hops[i].type === 'pellet' ? 1.15 : 1.0;
+
+    if (type === 'tinseth') {
+      utilization = (1.65 * Math.pow(0.000125, OG - 1.0) * ((1 - Math.pow(Math.E, -0.04 * hops[i].length)) / 4.15));
+      IBU += utilization * ((hops[i].aa / 100.0 * oz2kg(hops[i].weight) * 1000000) / gal2l(vol) * utilizationFactor);
+    } else if (type === 'rager') {
+      utilization = 18.11 + 13.86 * tanh((hops[i].length - 31.32) / 18.27);
+      const adjustment = Math.max(0, (OG - 1.050) / 0.2);
+      IBU += oz2kg(hops[i].weight) * 100 * utilization * utilizationFactor * hops[i].aa / (gal2l(vol) * (1 + adjustment));
+    }
+  }
+  
+  return IBU.toFixed(2);
 }
 
 // * SRM
