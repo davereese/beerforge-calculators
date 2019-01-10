@@ -1,14 +1,14 @@
 {
-  "main.css": "/beerforge-calculators/static/css/main.432c398d.chunk.css",
-  "main.js": "/beerforge-calculators/static/js/main.7920165c.chunk.js",
-  "main.js.map": "/beerforge-calculators/static/js/main.7920165c.chunk.js.map",
-  "static/js/1.b0375be7.chunk.js": "/beerforge-calculators/static/js/1.b0375be7.chunk.js",
-  "static/js/1.b0375be7.chunk.js.map": "/beerforge-calculators/static/js/1.b0375be7.chunk.js.map",
-  "runtime~main.js": "/beerforge-calculators/static/js/runtime~main.faffd4d5.js",
-  "runtime~main.js.map": "/beerforge-calculators/static/js/runtime~main.faffd4d5.js.map",
-  "static/media/logo.svg": "/beerforge-calculators/static/media/logo.2115c59e.svg",
-  "static/css/main.432c398d.chunk.css.map": "/beerforge-calculators/static/css/main.432c398d.chunk.css.map",
-  "index.html": "/beerforge-calculators/index.html",
-  "precache-manifest.6b02346e563ca4c137fae7229014a60e.js": "/beerforge-calculators/precache-manifest.6b02346e563ca4c137fae7229014a60e.js",
-  "service-worker.js": "/beerforge-calculators/service-worker.js"
+  "main.css": "/static/css/main.432c398d.chunk.css",
+  "main.js": "/static/js/main.cda5d609.chunk.js",
+  "main.js.map": "/static/js/main.cda5d609.chunk.js.map",
+  "static/js/1.b0375be7.chunk.js": "/static/js/1.b0375be7.chunk.js",
+  "static/js/1.b0375be7.chunk.js.map": "/static/js/1.b0375be7.chunk.js.map",
+  "runtime~main.js": "/static/js/runtime~main.229c360f.js",
+  "runtime~main.js.map": "/static/js/runtime~main.229c360f.js.map",
+  "static/media/logo.svg": "/static/media/logo.2115c59e.svg",
+  "static/css/main.432c398d.chunk.css.map": "/static/css/main.432c398d.chunk.css.map",
+  "index.html": "/index.html",
+  "precache-manifest.553a5f7876b46a00b7a664aa40509483.js": "/precache-manifest.553a5f7876b46a00b7a664aa40509483.js",
+  "service-worker.js": "/service-worker.js"
 }
