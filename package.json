@@ -2,6 +2,7 @@
   "name": "beerforge-calculators",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://beerforge.net",
   "dependencies": {
     "@emotion/core": "^10.0.5",
     "babel-plugin-emotion": "^10.0.5",
