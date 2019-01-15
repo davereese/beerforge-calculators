@@ -16,6 +16,8 @@ import StrikeVolume from './components/strike-volume';
 import TotalWater from './components/total-water';
 import SpargeVolume from './components/sparge-volume';
 import EvaporationPercent from './components/evap-percent';
+import YeastTargetPitchingRate from './components/yeast-target';
+import YeastPitchingRate from './components/yeast-rate';
 import SRM from './components/srm';
 import IBU from './components/ibu';
 import CO2 from './components/co2';
@@ -82,6 +84,12 @@ class App extends Component {
           </div>
           <div css={card}>
             <PreBoilGravity calculator={Calculator.preBoilG} />
+          </div>
+          <div css={card}>
+            <YeastTargetPitchingRate calculator={Calculator.targetPitchingRate} />
+          </div>
+          <div css={card}>
+            <YeastPitchingRate calculator={Calculator.pitchingRate} />
           </div>
           <div css={card}>
             <FinalGravity calculator={Calculator.FG} />

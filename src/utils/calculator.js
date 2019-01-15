@@ -5,6 +5,8 @@ const equipmentLoss = 1; // gal
 const absorptionRate = 0.15; // gal/lb of grain
 
 
+
+
 // PRIVATE FUNCTIONS
 
 function convertToGravityUnits(value) {
@@ -35,9 +37,15 @@ function gal2l(number) {
   return number * 3.78541;
 }
 
+function gal2ml(number) {
+  return number * 3785.41;
+}
+
 function tanh(number) {
   return (Math.exp(number) - Math.exp(-number)) / (Math.exp(number) + Math.exp(-number));
 };
+
+
 
 
 // PUBLIC FUNCTIONS
@@ -108,6 +116,26 @@ export function OG(malts, efficiency, volume) {
 
   // convert back to gravity units and return
   return convertToGravityUnits(OG);
+}
+
+// * Target Yeast Pitching Rate
+export function targetPitchingRate(OG, vol, targetRate) {
+  // Target pitch rate: million cells / ml / degree plato
+  const rate = (targetRate * 1000000) * gal2ml(vol) * convertToPlato(OG);
+  return (rate / 1000000000).toPrecision(3);
+}
+
+// * Yeast Pitching Rate
+export function pitchingRate(type, number = null, date = null, grams = null, cells = null) {
+  let viableCells;
+  if (type === 'liquid') {
+    const daysElapsed = Math.floor((Date.now() - Date.parse(date)) / 86400000);
+    const liquidCells = number * 100000000;
+    viableCells = liquidCells - (liquidCells * ((daysElapsed * 0.7) / 100));
+  } else if (type === 'dry') {
+    viableCells = grams * cells * 1000000;
+  }
+  return (viableCells / 1000000).toPrecision(3);
 }
 
 // * Final Gravity
