@@ -28,11 +28,30 @@ const white = '#fff;';
 const yellow = '#f4d03f';
 
 const page = css`
-  padding: 100px 50px 50px;
+  padding: 90px 50px 50px;
   width: 100%;
   min-height: 100vh;
   background: linear-gradient(125.4deg, ${lightBrown} 0%, ${darkBrown} 118.45%);
   box-sizing border-box;
+`;
+
+const h1 = css`
+  margin-bottom: 10px;
+  color: white;
+  text-align: center;
+  font-size: 20px;
+`;
+
+const p = css`
+  margin: 0 auto 20px;
+  max-width: 650px;
+  color: white;
+  text-align: center;
+  line-height: 1.3;
+
+  span {
+    line-height: 2;
+  }
 `;
 
 const container = css`
@@ -60,6 +79,8 @@ class App extends Component {
     return (
       <div css={page} className="App">
         <Header />
+        <h1 css={h1}>Welcome to BeerForge.</h1>
+        <p css={p}>We have a ton of awesome stuff planned for this homebrewing app, but for now we hope you find our calculators helpful and fun. Keep an eye on us for complete recipie builders, brew logs and more, coming soon.<br /><span>-Cheers</span></p>
         <div css={container}>
           <div css={card}>
             <TotalWater calculator={Calculator.totalWater} />
