@@ -8,6 +8,7 @@ class StrikeTemperature extends Component {
       ratio: '',
       temp1: '',
       temp2: '',
+      factor: '',
     }
   }
 
@@ -21,7 +22,7 @@ class StrikeTemperature extends Component {
     }
 
     const results = () => {
-      const result = calculator(this.state.temp1, this.state.temp2, this.state.ratio);
+      const result = calculator(this.state.temp1, this.state.temp2, this.state.ratio, this.state.factor);
       if (!isNaN(result) && isFinite(result) && result > 0) {
         label = '°F';
         return result;
@@ -51,6 +52,13 @@ class StrikeTemperature extends Component {
             name="temp2"
             type="number"
             value={this.state.temp2}
+            onChange={handleInputChange}
+          ></input><br />
+          <label htmlFor="factor">Adjustment Factor</label><br />
+          <input
+            name="factor"
+            type="number"
+            value={this.state.factor}
             onChange={handleInputChange}
           ></input><br />
         </div>

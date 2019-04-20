@@ -10,6 +10,7 @@ const header = css`
   height: 55px;
   background-color: #2B2B2B;
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+  z-index: 10;
 `;
 
 const header__logo = css`

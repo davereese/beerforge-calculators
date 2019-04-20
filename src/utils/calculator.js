@@ -66,10 +66,11 @@ export function strikeVolume(grainWeight, ratio = 1.5) {
 }
 
 // * Strike Water Temperature
-export function strikeTemp(grainTemp, targetTemp, ratio, vGrain, strikeVolume) {
+export function strikeTemp(grainTemp, targetTemp, ratio, factor) {
   // R - ratio of water to grain, T1 - initial temp of grain, T2 - mash temp target
   // Strike Water Temperature Tw = (0.2 / R)(T2 - T1) + T2
-  const Tw = ((0.2 / ratio) * (targetTemp - grainTemp) + parseInt(targetTemp)).toFixed(2);
+  const useFactor = factor ? factor : 1;
+  const Tw = ((0.2 / ratio) * (targetTemp - (grainTemp * useFactor)) + parseInt(targetTemp)).toFixed(2);
   return Tw;
 }
 
